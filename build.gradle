@@ -1,0 +1,56 @@
+buildscript {
+    repositories {
+        mavenCentral()
+        jcenter()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:1.1.10.RELEASE")
+        classpath 'be.filipblondeel.gradle:gradle-gulp-plugin:0.1'
+    }
+}
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'idea'
+apply plugin: 'spring-boot'
+apply plugin: 'gulp'
+jar {
+    baseName = 'gs-spring-boot'
+    version = '0.1.0'
+}
+repositories {
+    mavenCentral()
+}
+dependencies {
+// tomcat
+    compile("org.springframework.boot:spring-boot-starter-web")
+// tag::actuator[]
+    compile("org.springframework.boot:spring-boot-starter-actuator")
+// end::actuator[]
+    testCompile("junit:junit")
+    testCompile("org.springframework.boot:spring-boot-starter-test")
+    compile("org.springframework.data:spring-data-mongodb:1.6.2.RELEASE")
+// websocket
+    compile("org.springframework.boot:spring-boot-starter-websocket")
+    compile("org.springframework:spring-messaging")    
+}
+task wrapper(type: Wrapper) {
+    gradleVersion = '1.11'
+}
+
+task clientBuild(type: GulpTask) {
+   workingDir = 'client'
+   args = ["build", "--mode=production"]
+}
+
+task copyClient(type: Copy) {
+    from 'client/build'
+    into 'public'
+}
+
+task cleanClient(type: Delete){
+    delete 'public'
+}
+
+clientBuild.dependsOn cleanClient
+copyClient.dependsOn clientBuild
+build.dependsOn copyClient

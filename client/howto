@@ -1,0 +1,12 @@
+Validation-messages:
+ - adding <div data-role="validation-msg"></div> into the context enables to work with
+   the BaseView's removeValidation and showAsValidation methods.
+ - The context-argument, if given, makes this method working relative to the given dom-context.
+   For instance, when the above div is contained in a context container. 
+   
+ Error-handling:
+ - Distinguishes between Validation/Config Errors and unexpected errors.
+ - Both is handled in BaseController.handleError.
+   This invokes the BaseViews showAsValidation resp showAsError methods.
+ - the context-argument works as above, only for unexpected errors it has no effect
+   because it always is shown in pop-up.

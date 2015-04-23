@@ -1,0 +1,53 @@
+- server + calculatur is packed in jar and runnable from there
+- client-hook will be jar which contains rest-client which request addData on embedded-server
+  when calling RestBI.addData ...
+- all goes into ivi-repo accessable for gradle 
+
+- create gui in web which enable to make this settings (items-defs)
+
+WebRouter:
+- all routes for web
+- route to make current model available to apply
+
+Views:      
+mining-data-setup - specification of attribute to be stored and which are qualified,
+                    upload data from file, data-statistics (when arrived how many)
+monitor/adjust model  - model outcome and valuations, allows user to adjust model, to export model (json)
+                        monitor performance (testing against fraction of the mining set),
+                        showing change of model over time (how does behaviour change)                       
+model-runner - button to force model creation now, setup for scheduler (timing and new data trigger, run after 100 new data)
+
+
+
+ClientHook: create the rest-client talking to application and invocable from hook (only for other languages than java)
+            The api for this is Router:  -addData(records) and -applyModel(item) 
+            
+
+SchedulerService: contains logic when to run algorithm, - timed, - run-trigger (force run), - new data trigger
+   Client-side needs view to support settings of this parameter. 
+
+
+- records will need a time-stamp, in order to show how model evolves over time and to restrict
+  data (most useful data always are the latest, behaviour changes over time)
+  This must be validation and is required! As timestamp.
+  Add to item validation a displayName-property (which is required).
+
+- gradle build-task: which runs the gulp build and copies to public folder
+
+Future extends:
+- statistic learning, ...
+all in the context 'easy setup, automatic model building'
+
+- supporting multiple model creation, this requires to split the mining setup
+  and adding model selection in front-end
+  
+  
+ 
+			
+	
+
+
+ 
+  
+
+

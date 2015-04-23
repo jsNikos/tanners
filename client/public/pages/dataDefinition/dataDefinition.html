@@ -1,0 +1,56 @@
+<div>	
+
+	<div class="alert alert-info hide" role="alert"
+		data-role="warn-missing-config">
+		In order to feed the system with mining-data it is necessary to
+		describe their basic properties.<br> The Display-Name Property will be
+		used to extract from an item a string-representation. Therefore it
+		should be unique, but must not.<br> The Key Properties are used
+		to identify an item.<br><br><b>Example:</b><br> If you have items like {display:
+		"Butter", name: "butter"} you would need to have Display Name
+		Property as "display" and one Key Property as "name".<br>
+		Note, you can define multiple Key Properties by just adding them.
+	</div>
+
+	<div class="form-horizontal item-definition-form">
+		<fieldset>
+
+			<!-- Form Name -->
+			<legend>Item Definition</legend>
+
+			<!-- Text input-->
+			<div class="control-group">
+				<label class="control-label">Display-Name Property</label>
+				<div class="controls">
+					<input name="displayNameProp" placeholder="name" class="form-control"
+						type="text" data-role="displayNameProp">
+					<p class="help-block">Property used to present an item.</p>
+				</div>
+			</div>
+
+			<div data-role="keyProperties">
+			<!-- key properties are rendered here -->
+			</div>
+
+			<div class="alert alert-warning hide" role="alert"
+				data-role="warn-changing">A word of care. Changes in
+				mining-data definition will require to remove all former mining-data
+				and model instances from database. Nevertheless, after changing
+				these settings, you can always upload historic data from Mining
+				Data's upload facilities.</div>
+			
+			<div data-role="validation-msg"><!-- validation issues are rendered here --></div>			
+
+			<!-- Button -->
+			<div class="control-group button-panel">
+				<div class="controls">
+					<button data-role="publish" class="btn btn-primary">Publish
+						To Server</button>
+					<button data-role="cancel" class="btn btn-primary">Cancel</button>
+				</div>
+			</div>
+
+		</fieldset>
+	</div>
+
+</div>

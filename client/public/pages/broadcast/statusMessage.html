@@ -1,0 +1,25 @@
+<% if(taskEntity){ %>
+<div>Started at: <%- formatTime(taskEntity.created) %></div>
+<% } %>
+<% if(!terminated){ %>
+<div>
+	<div class="progress-state-msg"><%- progressStateMsg %></div>
+	<div class="progress">
+		<div
+			class="progress-bar progress-bar-success progress-bar-striped active"
+			role="progressbar" aria-valuenow="<%- displayProgress %>"
+			aria-valuemin="0" aria-valuemax="100"
+			style="width: <%- displayProgress %>%">
+			<span class="sr-only"><%- displayProgress %>% Complete</span>
+		</div>
+	</div>
+</div>
+<% } else {  
+    if(taskEntity.finished){ %>			
+	<div class="alert alert-success terminate" role="alert">Finished at <%- formatTime(taskEntity.finished) %></div> 
+	<%	} else if(taskEntity.canceled){ %>
+	<div class="alert alert-warning terminate" role="alert">Canceled at <%- formatTime(taskEntity.canceled) %></div>
+	<%	} else if(taskEntity.error){ %>
+	<div class="alert alert-danger terminate" role="alert">An error happened <%- taskEntity.error.msg %></div>			
+	<%	} %>
+<% } %>
